@@ -291,7 +291,12 @@ void Grafo<T>::imprimiAristas()
         list<Arista<T> >* aristasDelVertice=obtenerConexionesVertice(cont);
         typename list<Arista<T> >::iterator itConexiones=aristasDelVertice->begin();
         for(; itConexiones!=aristasDelVertice->end(); itConexiones++)
-            cout<<"ver_org: "<<*itVertices->getDato()<<" --  ver_des: "<<*itConexiones->getSucesor()->getDato()<<endl;
+        {
+            cout << "\t(" << itVertices->getDato()->X << "," << itVertices->getDato()->Y << ")"; 
+            cout << "\t  (" << itConexiones->getSucesor()->getDato()->X << "," << itConexiones->getSucesor()->getDato()->Y << ")"; 
+            cout << "\t" << itConexiones->getPeso() << endl;
+        }
+            
         
         cout<<endl;
         cont++;
@@ -301,9 +306,9 @@ template <class T>
 void Grafo<T>::imprimirVertices()
 {
     typename list< Vertice<T> >:: iterator it = vertices.begin();
-
+    advance(it,1);
     for(; it != vertices.end(); ++it)
-        cout<< it->getDato()->X<<" - ";
+        cout << "\t\t(" << it->getDato()->X << "," << it->getDato()->Y << ")" << endl;
 }
 template <class T>
 bool Grafo<T>::eliminarConexion(list<Arista<T> >* conex, Vertice<T>* verDes)

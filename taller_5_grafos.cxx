@@ -106,19 +106,33 @@ int main( int argc, char* argv[] )
 
     float costo = it->getDato()->distanciaA(*it2->getDato());
     //std::cout << costo <<" "<<endl;
-    //std::cout << "start: " <<it->getDato()->X <<" end: " <<it2->getDato()<<endl; 
+    //std::cout << "start: " <<it->getDato()->X <<" end: " <<it2->getDato()->X <<endl; 
      g->insertarArista(*it->getDato(), *it2->getDato(), costo);
      g->insertarArista(*it2->getDato(), *it->getDato(), costo);
   }
   delete [] in_mesh_file_buffer;
-  //g->imprimirVertices();
-  /*g->imprimiAristas();*/
   
   list<Vertice<Punto>> v = g->getVertices();
   list<Vertice<Punto>>::iterator itV = v.begin();
   
-  cout << "Porteria: " 
-       << itV->getDato()->X << "," << itV->getDato()->Y << endl;
+  cout << "======================================================================== " << endl;
+  cout << "\t\tPORTERIA" << endl;
+  cout << "======================================================================== " << endl;
+  cout <<"\t\t(X  Y)" << endl;
+  cout <<"\t\t(" << itV->getDato()->X << "," << itV->getDato()->Y << ")" << endl;
+
+  cout << "\n======================================================================== " << endl;
+  cout << "\t\tCASAS"<<endl;
+  cout << "======================================================================== " << endl;
+  cout <<"\t\t(X  Y)" << endl;
+  g->imprimirVertices();
+
+  cout << "\n======================================================================== " << endl;
+  cout << "\t\tCAMINOS"<<endl;
+  cout << "======================================================================== " << endl;
+  cout << "\tOrigen \t  Destino \tDistancia" << endl;
+  cout << "\t(X  Y)\t  (X  Y)" << endl;
+  g->imprimiAristas();
 
   int tamanoGrafo=g->getConexiones().size();
 
@@ -136,23 +150,23 @@ int main( int argc, char* argv[] )
   // TODO # 7: Imprimir el informe de Prim
   typename vector<Punto>::iterator itSP = SPrim->begin();
      
-  cout << "======================================================================== " << endl;
+  cout << "\n======================================================================== " << endl;
   cout << "\t\tPRIM"<<endl;
   cout << "======================================================================== " << endl;
+  cout <<"\t\t(X  Y)" << endl;
   for(; itSP != SPrim->end(); itSP++)
-  {
-    cout << itSP->X << "," << itSP->Y << endl;
-  }
+    cout <<"\t\t(" << itSP->X << "," << itSP->Y << ")" << endl;
+  
 
   // TODO # 8: Imprimir el informe de Dijkstra (mismo fomato que informe de Prim)
   typename vector<Punto>::iterator itSD = SDijk->begin();
-   cout << "======================================================================== " << endl;
+  cout << "\n======================================================================== " << endl;
   cout << "\t\tDIJKSTRA"<<endl;
   cout << "======================================================================== " << endl;
+  cout <<"\t\t(X  Y)" << endl;
   for(; itSD != SDijk->end(); itSD++)
-  {
-      cout << itSD->X << "," << itSD->Y << endl;
-  }
+    cout <<"\t\t(" << itSD->X << "," << itSD->Y << ")" << endl;
+  
 
   return( 0 );
 }
